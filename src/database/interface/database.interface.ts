@@ -1,4 +1,4 @@
 export enum DatabaseSource {
     Primary = "primary",
-    Secondary = "secondary"
+    Secondary = "secondary",
 }
