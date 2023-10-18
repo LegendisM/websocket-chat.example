@@ -1,9 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { RoleEntity } from "src/modules/policy/entity/role.entity";
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({
-    name: 'user'
+    name: 'user',
 })
 export class UserEntity {
+    static readonly modelName = "UserEntity";
+
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
@@ -12,4 +15,8 @@ export class UserEntity {
 
     @Column()
     password: string;
+
+    @ManyToMany(() => RoleEntity, (role) => role.users, { eager: true })
+    @JoinTable()
+    roles: RoleEntity[];
 }

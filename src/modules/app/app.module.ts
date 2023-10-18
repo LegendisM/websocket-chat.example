@@ -4,6 +4,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { DatabaseSource } from "src/database/interface/database.interface";
 import { PrimaryDataSource } from "src/database/primary/primary.data-source";
 import { UserModule } from "../user/user.module";
+import { PolicyModule } from "../policy/policy.module";
 
 @Module({
     imports: [
@@ -18,6 +19,7 @@ import { UserModule } from "../user/user.module";
                 return await PrimaryDataSource.initialize();
             },
         }),
+        PolicyModule,
         UserModule,
     ],
 })
