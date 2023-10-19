@@ -1,5 +1,5 @@
 import { InferSubjects, PureAbility } from "@casl/ability";
-import { UserEntity } from "src/modules/user/entity/user.entity";
+import { UserEntity } from "./../../user/entity/user.entity";
 import { RoleEntity } from "../entity/role.entity";
 import { PermissionEntity } from "../entity/permission.entity";
 

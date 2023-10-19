@@ -1,5 +1,4 @@
-import slugify from "slugify";
-import { UserEntity } from "src/modules/user/entity/user.entity";
+import { UserEntity } from "./../../user/entity/user.entity";
 import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { PermissionEntity } from "./permission.entity";
 
@@ -12,12 +11,7 @@ export class RoleEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column({
-        transformer: {
-            from: (value) => value,
-            to: (value) => slugify(value, '_'),
-        },
-    })
+    @Column()
     name: string;
 
     @ManyToMany(() => PermissionEntity, (permission) => permission.roles, { eager: true })

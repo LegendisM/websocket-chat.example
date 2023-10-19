@@ -45,6 +45,19 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Migrations & Seeders (Only basic modules prerequisites)
+
+```bash
+# create
+$ npm run typeorm migration:create ./src/database/primary/migration/[my-seed-name]
+# generate
+$ npm run typeorm migration:generate -- ./src/database/primary/migration/[NAME] -d ./src/database/primary/primary.data-source.ts
+# run
+$ npm run typeorm migration:run -- -d ./src/database/primary/primary.data-source.ts
+# revert
+$ npm run typeorm migration:revert -- -d ./src/database/primary/primary.data-source.ts
+```
+
 ## Test
 
 ```bash

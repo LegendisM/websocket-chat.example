@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
-import { PolicyAction, PolicySubject } from "../interface/policy.interface";
+import { PolicyAction } from "../interface/policy.interface";
 import { RoleEntity } from "./role.entity";
 
 @Entity({
@@ -18,7 +18,7 @@ export class PermissionEntity {
     action: PolicyAction;
 
     @Column()
-    subject: PolicySubject;
+    subject: string;
 
     @ManyToMany(() => RoleEntity, (role) => role.permissions)
     roles: RoleEntity[];
