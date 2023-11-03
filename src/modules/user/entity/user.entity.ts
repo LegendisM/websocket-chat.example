@@ -16,6 +16,12 @@ export class UserEntity {
     @Column()
     password: string;
 
+    @Column({ nullable: true })
+    email: string;
+
+    @Column({ nullable: true })
+    avatar: string;
+
     @ManyToMany(() => RoleEntity, (role) => role.users, { eager: true })
     @JoinTable()
     roles: RoleEntity[];
