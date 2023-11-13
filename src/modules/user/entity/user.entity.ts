@@ -13,14 +13,17 @@ export class UserEntity {
     @Column({ type: 'varchar', length: '28' })
     username: string;
 
-    @Column()
-    password: string;
+    @Column({ nullable: true })
+    password?: string;
 
     @Column({ nullable: true })
-    email: string;
+    email?: string;
 
     @Column({ nullable: true })
-    avatar: string;
+    phone?: string;
+
+    @Column({ nullable: true })
+    avatar?: string;
 
     @ManyToMany(() => RoleEntity, (role) => role.users, { eager: true })
     @JoinTable()

@@ -8,6 +8,7 @@ import { AuthOtpController } from "./controller/auth-otp.controller";
 import { AuthCredentialService } from "./service/auth-credential.service";
 import { AuthConnectionService } from "./service/auth-connection.service";
 import { AuthOtpService } from "./service/auth-otp.service";
+import { AuthAccountService } from "./service/auth-account.service";
 
 @Module({
     imports: [
@@ -15,7 +16,7 @@ import { AuthOtpService } from "./service/auth-otp.service";
         UserModule,
     ],
     controllers: [AuthController, AuthConnectionController, AuthOtpController],
-    providers: [AuthTokenService, AuthCredentialService, AuthConnectionService, AuthOtpService],
+    providers: [AuthTokenService, AuthAccountService, AuthCredentialService, AuthConnectionService, AuthOtpService],
     exports: [AuthTokenService],
 })
 export class AuthModule { }
