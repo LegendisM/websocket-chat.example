@@ -17,7 +17,11 @@ export class AuthAccountService {
         let { username, password, email, phone } = createDto;
 
         if (!username) {
-            username = `${AUTH_ACCOUNT_USERNAME_PREFIX}randomText`;
+            username = `${AUTH_ACCOUNT_USERNAME_PREFIX}${email.replace('@', '') ?? phone.replace('+', '')}${_.random(1, 9999)}`;
+        } else {
+            const user = await this.userService.findOne({ username });
+
+            if (user) throw new ConflictException('auth.username-already-used');
         }
 
         if (password) {
