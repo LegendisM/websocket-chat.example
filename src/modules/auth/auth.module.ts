@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { JwtModule } from "@nestjs/jwt";
-import { AuthController } from "./controller/auth.controller";
+import { AuthCredentialController } from "./controller/auth-credential.controller";
 import { UserModule } from "../user/user.module";
 import { AuthTokenService } from "./service/auth-token.service";
 import { AuthConnectionController } from "./controller/auth-connection.controller";
@@ -15,7 +15,7 @@ import { AuthAccountService } from "./service/auth-account.service";
         JwtModule.register({}),
         UserModule,
     ],
-    controllers: [AuthController, AuthConnectionController, AuthOtpController],
+    controllers: [AuthCredentialController, AuthConnectionController, AuthOtpController],
     providers: [AuthTokenService, AuthAccountService, AuthCredentialService, AuthConnectionService, AuthOtpService],
     exports: [AuthTokenService],
 })
