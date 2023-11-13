@@ -3,7 +3,6 @@ import bcrypt from "bcrypt";
 import { ConflictException, Injectable } from "@nestjs/common";
 import { UserService } from "src/modules/user/user.service";
 import { CreateAccountDto } from "../dto/create-account.dto";
-import { AUTH_ACCOUNT_USERNAME_PREFIX } from "../constant/auth.constant";
 import { UserEntity } from "src/modules/user/entity/user.entity";
 import { ValidateAccountDto } from "../dto/validate-account.dto";
 
@@ -17,7 +16,7 @@ export class AuthAccountService {
         let { username, password, email, phone } = createDto;
 
         if (!username) {
-            username = `${AUTH_ACCOUNT_USERNAME_PREFIX}${email.replace('@', '') ?? phone.replace('+', '')}${_.random(1, 9999)}`;
+            username = _.reverse((email ?? phone).replace(/[^a-zA-Z0-9 ]/g, ''));
         } else {
             const user = await this.userService.findOne({ username });
 
