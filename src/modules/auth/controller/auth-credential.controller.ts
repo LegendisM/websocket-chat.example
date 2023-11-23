@@ -1,8 +1,8 @@
 import { Body, Controller, Post } from "@nestjs/common";
 import { ApiConflictResponse, ApiOkResponse, ApiTags } from "@nestjs/swagger";
 import { AuthCredentialService } from "../service/auth-credential.service";
-import { CredentialSignupDto } from "../dto/signup-credential.dto";
-import { CredentialSigninDto } from "../dto/signin-credential.dto";
+import { SignupCredentialDto } from "../dto/signup-credential.dto";
+import { SigninCredentialDto } from "../dto/signin-credential.dto";
 
 @ApiTags("Auth Credential")
 @Controller({
@@ -21,7 +21,7 @@ export class AuthCredentialController {
     @ApiConflictResponse({
         description: 'Already used information.',
     })
-    async signup(@Body() signupDto: CredentialSignupDto) {
+    async signup(@Body() signupDto: SignupCredentialDto) {
         return await this.authCredentialService.signup(signupDto);
     }
 
@@ -32,7 +32,7 @@ export class AuthCredentialController {
     @ApiConflictResponse({
         description: 'Invalid account information.',
     })
-    async signin(@Body() signinDto: CredentialSigninDto) {
+    async signin(@Body() signinDto: SigninCredentialDto) {
         return await this.authCredentialService.signin(signinDto);
     }
 }

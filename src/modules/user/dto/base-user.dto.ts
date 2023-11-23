@@ -13,7 +13,7 @@ export class BaseUserDto {
 
     @ApiProperty()
     @IsString()
-    @Length(4, 12)
+    @Length(4, 28)
     password: string;
 
     @ApiProperty()

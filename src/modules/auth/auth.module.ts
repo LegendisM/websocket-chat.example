@@ -9,14 +9,28 @@ import { AuthCredentialService } from "./service/auth-credential.service";
 import { AuthConnectionService } from "./service/auth-connection.service";
 import { AuthOtpService } from "./service/auth-otp.service";
 import { AuthAccountService } from "./service/auth-account.service";
+import { AccessTokenStrategy } from "./strategy/access-token.strategy";
+import { RefreshTokenStrategy } from "./strategy/refresh-token.strategy";
 
 @Module({
     imports: [
         JwtModule.register({}),
         UserModule,
     ],
-    controllers: [AuthCredentialController, AuthConnectionController, AuthOtpController],
-    providers: [AuthTokenService, AuthAccountService, AuthCredentialService, AuthConnectionService, AuthOtpService],
+    controllers: [
+        AuthCredentialController,
+        AuthConnectionController,
+        AuthOtpController,
+    ],
+    providers: [
+        AuthTokenService,
+        AuthAccountService,
+        AuthCredentialService,
+        AuthConnectionService,
+        AuthOtpService,
+        AccessTokenStrategy,
+        RefreshTokenStrategy,
+    ],
     exports: [AuthTokenService],
 })
 export class AuthModule { }

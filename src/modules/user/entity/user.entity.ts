@@ -1,3 +1,4 @@
+import { Exclude } from "class-transformer";
 import { RoleEntity } from "./../../policy/entity/role.entity";
 import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
@@ -14,6 +15,7 @@ export class UserEntity {
     username: string;
 
     @Column({ nullable: true })
+    @Exclude()
     password?: string;
 
     @Column({ nullable: true })

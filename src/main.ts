@@ -12,6 +12,7 @@ async function bootstrap() {
 
   // * config
   const configService = app.get(ConfigService);
+  const nodeEnvironment = configService.get("NODE_ENV");
 
   // * settings
   app.enableCors();
@@ -25,14 +26,16 @@ async function bootstrap() {
   app.useStaticAssets(path.join(__dirname, '..', 'public'), { index: false, prefix: '/public' });
 
   // * swagger
-  const documentConfig = new DocumentBuilder()
-    .setTitle('WebSocket-Chat Project')
-    .setDescription('Example Project')
-    .setVersion('1.0')
-    .addBearerAuth()
-    .build();
-  const document = SwaggerModule.createDocument(app, documentConfig);
-  SwaggerModule.setup('/document', app, document, { jsonDocumentUrl: '/document.json' });
+  if (nodeEnvironment == "development") {
+    const documentConfig = new DocumentBuilder()
+      .setTitle('WebSocket-Chat Project')
+      .setDescription('Example Project')
+      .setVersion('1.0')
+      .addBearerAuth()
+      .build();
+    const document = SwaggerModule.createDocument(app, documentConfig);
+    SwaggerModule.setup('/document', app, document, { jsonDocumentUrl: '/document.json' });
+  }
 
   await app.listen(configService.get<number>('MAIN_PORT'));
 }

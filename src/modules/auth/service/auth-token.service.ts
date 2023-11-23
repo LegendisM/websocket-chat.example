@@ -6,7 +6,7 @@ import { ConfigService } from "@nestjs/config";
 
 @Injectable()
 export class AuthTokenService implements OnModuleInit {
-    #secrets: Record<AuthTokenType, string>;
+    #secrets: Record<AuthTokenType, string> = { access: '', refresh: '' };
 
     constructor(
         private jwtService: JwtService,
