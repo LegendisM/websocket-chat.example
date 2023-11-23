@@ -11,6 +11,7 @@ import { AuthOtpService } from "./service/auth-otp.service";
 import { AuthAccountService } from "./service/auth-account.service";
 import { AccessTokenStrategy } from "./strategy/access-token.strategy";
 import { RefreshTokenStrategy } from "./strategy/refresh-token.strategy";
+import { GoogleStrategy } from "./strategy/google.strategy";
 
 @Module({
     imports: [
@@ -30,6 +31,7 @@ import { RefreshTokenStrategy } from "./strategy/refresh-token.strategy";
         AuthOtpService,
         AccessTokenStrategy,
         RefreshTokenStrategy,
+        GoogleStrategy,
     ],
     exports: [AuthTokenService],
 })

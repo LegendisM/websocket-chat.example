@@ -20,9 +20,9 @@ import { AuthModule } from "../auth/auth.module";
                 return await PrimaryDataSource.initialize();
             },
         }),
-        PolicyModule,
         UserModule,
         AuthModule,
+        PolicyModule,
     ],
 })
 export class AppModule { }
