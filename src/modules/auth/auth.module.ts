@@ -12,9 +12,14 @@ import { AuthAccountService } from "./service/auth-account.service";
 import { AccessTokenStrategy } from "./strategy/access-token.strategy";
 import { RefreshTokenStrategy } from "./strategy/refresh-token.strategy";
 import { GoogleStrategy } from "./strategy/google.strategy";
+import { AuthConnectionEntity } from "./entity/auth-connection.entity";
+import { AuthConnectionProviderService } from "./service/auth-connection-provider.service";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { DatabaseSource } from "src/database/interface/database.interface";
 
 @Module({
     imports: [
+        TypeOrmModule.forFeature([AuthConnectionEntity], DatabaseSource.Primary),
         JwtModule.register({}),
         UserModule,
     ],
@@ -28,6 +33,7 @@ import { GoogleStrategy } from "./strategy/google.strategy";
         AuthAccountService,
         AuthCredentialService,
         AuthConnectionService,
+        AuthConnectionProviderService,
         AuthOtpService,
         AccessTokenStrategy,
         RefreshTokenStrategy,

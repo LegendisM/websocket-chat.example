@@ -3,6 +3,7 @@ import { ApiTags } from "@nestjs/swagger";
 import { GoogleOAuthGuard } from "../guard/google-oauth.guard";
 import { Request } from "express";
 import { IAuthConnectionCallbackInfo } from "../interface/auth-connection.interface";
+import { AuthConnectionProviderService } from "../service/auth-connection-provider.service";
 
 @ApiTags("Auth Connection")
 @Controller({
@@ -10,7 +11,9 @@ import { IAuthConnectionCallbackInfo } from "../interface/auth-connection.interf
     version: '1',
 })
 export class AuthConnectionController {
-    constructor() { }
+    constructor(
+        private authConnectionProviderService: AuthConnectionProviderService,
+    ) { }
 
     @Get('/google')
     @UseGuards(GoogleOAuthGuard)
@@ -19,7 +22,6 @@ export class AuthConnectionController {
     @Get('/google/callback')
     @UseGuards(GoogleOAuthGuard)
     async googleCallback(@Req() req: Request) {
-        const callbackInfo: IAuthConnectionCallbackInfo = req.user as IAuthConnectionCallbackInfo;
-        return callbackInfo;
+        return await this.authConnectionProviderService.process(req.user as IAuthConnectionCallbackInfo);
     }
 }

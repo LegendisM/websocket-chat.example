@@ -8,7 +8,7 @@ export class BaseUserDto {
 
     @ApiProperty()
     @IsString()
-    @Length(1, 28)
+    @Length(1, 32)
     username: string;
 
     @ApiProperty()
