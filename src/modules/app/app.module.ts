@@ -5,6 +5,7 @@ import { DatabaseSource } from "src/database/interface/database.interface";
 import { PrimaryDataSource } from "src/database/primary/primary.data-source";
 import { UserModule } from "../user/user.module";
 import { PolicyModule } from "../policy/policy.module";
+import { AuthModule } from "../auth/auth.module";
 
 @Module({
     imports: [
@@ -19,8 +20,9 @@ import { PolicyModule } from "../policy/policy.module";
                 return await PrimaryDataSource.initialize();
             },
         }),
-        PolicyModule,
         UserModule,
+        AuthModule,
+        PolicyModule,
     ],
 })
 export class AppModule { }

@@ -71,6 +71,9 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Typeorm DataSource
+Remember that after creating a new Entity, you must add it to your DataSource file in the [src/database/] path to the list of entities.
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).

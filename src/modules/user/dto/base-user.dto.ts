@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsUUID, Length } from "class-validator";
+import { IsEmail, IsPhoneNumber, IsString, IsUUID, Length } from "class-validator";
 
 export class BaseUserDto {
     @ApiProperty()
@@ -8,11 +8,19 @@ export class BaseUserDto {
 
     @ApiProperty()
     @IsString()
-    @Length(1, 16)
+    @Length(1, 32)
     username: string;
 
     @ApiProperty()
     @IsString()
-    @Length(4, 12)
+    @Length(4, 28)
     password: string;
+
+    @ApiProperty()
+    @IsEmail()
+    email: string;
+
+    @ApiProperty()
+    @IsPhoneNumber('IR')
+    phone: string;
 }
